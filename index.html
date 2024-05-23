@@ -54,7 +54,7 @@
           />
         </div>
         <div class="contacts">
-          <div class="contact" v-for="(contact, index) in contacts" :key="index">
+          <div class="contact" v-for="(contact, index) in contacts" :key="index" @click="selectContact(index)">
             <div class="contact-logo">
               <img :src="contact.avatar" :alt="contact.name" />
             </div>
@@ -86,7 +86,12 @@
           </div>
         </div>
         <div class="right-messages-container">
-          <div class="right-messages"></div>
+          <div class="right-messages">
+            <div v-for="(message, index) in contacts[activeContactIndex].messages" :key="index" :class="['message', message.status]">
+              {{ message.message }}
+              <div class="message-time">{{ message.date }}</div>
+            </div>
+          </div>
         </div>
         <div class="right-footer">
           <div class="right-footer-icon f-left">
