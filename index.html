@@ -54,16 +54,16 @@
           />
         </div>
         <div class="contacts">
-          <div class="contact">
+          <div class="contact" v-for="(contact, index) in contacts" :key="index">
             <div class="contact-logo">
-              <img src="img/avatar_1.jpg" alt="Utente" />
+              <img :src="contact.avatar" :alt="contact.name" />
             </div>
             <div class="contact-info">
               <h3>
-                <span class="contact-name">Nome contatto</span>
-                <span class="time f-right"></span>
+                <span class="contact-name">{{ contact.name }}</span>
+                <span class="time f-right">{{ getLastMessageTime(contact) }}</span>
               </h3>
-              <small></small>
+              <small>{{ getLastMessageText(contact) }}</small>
             </div>
           </div>
         </div>

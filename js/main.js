@@ -166,7 +166,7 @@ createApp({
                     ],
                 }
             ],
-        
+            activeContactIndex: 0,
 
 
 
@@ -175,7 +175,15 @@ createApp({
     },
 
     methods: {
-
+        selectContact(index) {
+            this.activeContactIndex = index;
+        },
+        getLastMessageText(contact) {
+            return contact.messages.length > 0 ? contact.messages[contact.messages.length - 1].message : '';
+        },
+        getLastMessageTime(contact) {
+            return contact.messages.length > 0 ? contact.messages[contact.messages.length - 1].date : '';
+        }
 
 
     },
