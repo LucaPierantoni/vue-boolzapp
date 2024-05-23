@@ -167,6 +167,7 @@ createApp({
                 }
             ],
             activeContactIndex: 0,
+            newMessage: ''
 
 
 
@@ -183,9 +184,24 @@ createApp({
         },
         getLastMessageTime(contact) {
             return contact.messages.length > 0 ? contact.messages[contact.messages.length - 1].date : '';
+        },
+        addMessage() {
+            if (this.newMessage.trim() !== '') {
+                this.contacts[this.activeContactIndex].messages.push({
+                    date: new Date().toLocaleString(),
+                    message: this.newMessage,
+                    status: 'sent'
+                });
+                this.newMessage = '';
+                setTimeout(this.addAutoReply, 1000);
+            }
+        },
+        addAutoReply() {
+            this.contacts[this.activeContactIndex].messages.push({
+                date: new Date().toLocaleString(),
+                message: 'ok',
+                status: 'received'
+            });
         }
-
-
-    },
-
+    }
 }).mount('#app');
